@@ -9,6 +9,11 @@ to use chain js first download the chainjs file and include it in your html proj
   <script src="chain.js"></script>'
   ```
 
+you may also use the raw link
+  EX:
+  ```html
+  <script src="https://raw.githubusercontent.com/theLemon505/chainjs/main/chain.js"></script>
+  ```
 after doing this you may ade chain links. chain links are links to html code files that may be loaded in or out of a project
 
 <img width="162" alt="Capture" src="https://user-images.githubusercontent.com/76224503/144658268-460e6d4b-08fc-439e-87a9-c19c6aa2e35a.PNG">
