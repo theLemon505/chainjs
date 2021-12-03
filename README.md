@@ -34,3 +34,10 @@ you may also use varibles with the chain-var element
   <chain-var id="var_id" val=0></chain-var>
   <chain-node var="var_id" varif=0 link="test.html"></chain-link>
   ```
+  
+add the "and" attribute if you would like to render the html only if both the "if" and "varif" are true
+  EX:
+  ```html
+  <chain-var id="var_id" val=0></chain-var>
+  <chain-node and="true" var="var_id" varif=0 link="test.html"></chain-link>
+  ```
