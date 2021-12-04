@@ -12,7 +12,7 @@ to use chain js first download the chainjs file and include it in your html proj
 you may also use the raw link
   EX:
   ```html
-  <script src="https://raw.githubusercontent.com/theLemon505/chainjs/main/chain.js"></script>
+  <script src="https://drive.google.com/uc?export=view&id=1XuiZEtoi_uW_ck447vGJwsrzCvxQVrdN"></script>
   ```
 after doing this you may ade chain links. chain links are links to html code files that may be loaded in or out of a project
 
