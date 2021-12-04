@@ -1,4 +1,4 @@
-class Chain extends HTMLElement{
+class Node extends HTMLElement{
     constructor(){
         super();
         this.link = null;
@@ -92,46 +92,26 @@ class Chain extends HTMLElement{
             this.removeAttribute('if')
         }
     }
-
     updateRendering(){
-        if(this.if === null){
-            return
-        }
         if(eval(this.and) === true){
-            if(this.if !== null){
+            if(this.if !== null && this.var !== null && this.varif !== null){
                 if(eval(this.if) && document.getElementById(this.var).getAttribute('val') === this.varif){
                     this.changePage();
                 }
             }
         }
-        if(eval(this.and) === false){
-            if(eval(this.if)){
-                this.changePage();
-            }
-            if(document.getElementById(this.var).getAttribute('val') !== this.varif){
-                return
-            }
-            if(document.getElementById(this.var).getAttribute('val') === this.varif){
-                this.changePage();
-            }
-            if(this.function !== null){
-                eval(this.function)
+        if(this.and === null || eval(this.and) === false){
+            if(this.if !== null || this.var !== null && this.varif !== null){
+                if(eval(this.if) || document.getElementById(this.var).getAttribute('val') === this.varif){
+                    this.changePage();
+                }
             }
         }
-
-        if(eval(this.and) === null){
-            if(eval(this.if)){
-                this.changePage();
-            }
-            if(document.getElementById(this.var).getAttribute('val') !== this.varif){
-                return
-            }
-            if(document.getElementById(this.var).getAttribute('val') === this.varif){
-                this.changePage();
-            }
-            if(this.function !== null){
-                eval(this.function)
-            }
+        if(this.function !== null){
+            eval(this.function)
+        }
+        if(this.if === null && this.var === null && this.varif === null){
+            this.changePage();
         }
     }
     changePage(){
@@ -235,44 +215,25 @@ class Link extends HTMLElement{
     }
 
     updateRendering(){
-        if(this.if === null){
-            return
-        }
         if(eval(this.and) === true){
-            if(this.if !== null){
+            if(this.if !== null && this.var !== null && this.varif !== null){
                 if(eval(this.if) && document.getElementById(this.var).getAttribute('val') === this.varif){
                     this.changePage();
                 }
             }
         }
-        if(eval(this.and) === false){
-            if(eval(this.if)){
-                this.changePage();
-            }
-            if(document.getElementById(this.var).getAttribute('val') !== this.varif){
-                return
-            }
-            if(document.getElementById(this.var).getAttribute('val') === this.varif){
-                this.changePage();
-            }
-            if(this.function !== null){
-                eval(this.function)
+        if(this.and === null || eval(this.and) === false){
+            if(this.if !== null || this.var !== null && this.varif !== null){
+                if(eval(this.if) || document.getElementById(this.var).getAttribute('val') === this.varif){
+                    this.changePage();
+                }
             }
         }
-
-        if(eval(this.and) === null){
-            if(eval(this.if)){
-                this.changePage();
-            }
-            if(document.getElementById(this.var).getAttribute('val') !== this.varif){
-                return
-            }
-            if(document.getElementById(this.var).getAttribute('val') === this.varif){
-                this.changePage();
-            }
-            if(this.function !== null){
-                eval(this.function)
-            }
+        if(this.function !== null){
+            eval(this.function)
+        }
+        if(this.if === null && this.var === null && this.varif === null){
+            this.changePage();
         }
     }
 
@@ -307,10 +268,9 @@ class Var extends HTMLElement{
     }
 
     update(){
-        console.log(this.val);
     }
 }
 
 customElements.define("chain-link", Link);
 customElements.define("chain-var", Var);
-customElements.define("chain-node", Chain);
+customElements.define("chain-node", Node);
