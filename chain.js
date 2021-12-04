@@ -101,7 +101,7 @@ class Node extends HTMLElement{
             }
         }
         if(this.and === null || eval(this.and) === false){
-            if(this.if !== null || this.var !== null && this.varif !== null){
+            if(this.if !== null || (this.var !== null && this.varif !== null)){
                 if(eval(this.if) || document.getElementById(this.var).getAttribute('val') === this.varif){
                     this.changePage();
                 }
@@ -223,7 +223,7 @@ class Link extends HTMLElement{
             }
         }
         if(this.and === null || eval(this.and) === false){
-            if(this.if !== null || this.var !== null && this.varif !== null){
+            if(this.if !== null || (this.var !== null && this.varif !== null)){
                 if(eval(this.if) || document.getElementById(this.var).getAttribute('val') === this.varif){
                     this.changePage();
                 }
