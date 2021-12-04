@@ -7,9 +7,10 @@ class Node extends HTMLElement{
         this.var = null;
         this.varif = null; 
         this.and = false;
+        this.for = null;
     }
 
-    static observedAttributes = ["link","if","function","var","varif", "and"]
+    static observedAttributes = ["link","if","function","var","varif","and","for"]
 
     connectedCallback(){
         this.updateRendering();
@@ -25,6 +26,19 @@ class Node extends HTMLElement{
         }
         else{
             this.removeAttribute('link')
+        }
+    }
+
+    get for(){
+        return this.getAttribute('for');
+    }
+
+    set for(val){
+        if(val){
+            this.setAttribute('for', val)
+        }
+        else{
+            this.removeAttribute('for')
         }
     }
 
@@ -96,14 +110,42 @@ class Node extends HTMLElement{
         if(eval(this.and) === true){
             if(this.if !== null && this.var !== null && this.varif !== null){
                 if(eval(this.if) && document.getElementById(this.var).getAttribute('val') === this.varif){
-                    this.changePage();
+                    if(this.for !== null){
+                        if(typeof eval(this.for) === "number"){
+                            for(let x = 0; x < this.for; x++){
+                                this.addPage();
+                            }
+                        }
+                        else if(typeof this.for === "string"){
+                            for(let x = 0; x < document.getElementById(this.for).getAttribute('val'); x++){
+                                this.addPage();
+                            }
+                        }
+                    }
+                    else{
+                        this.changePage();
+                    }
                 }
             }
         }
         if(this.and === null || eval(this.and) === false){
             if(this.if !== null || (this.var !== null && this.varif !== null)){
                 if(eval(this.if) || document.getElementById(this.var).getAttribute('val') === this.varif){
-                    this.changePage();
+                    if(this.for !== null){
+                        if(typeof eval(this.for) === "number"){
+                            for(let x = 0; x < this.for; x++){
+                                this.addPage();
+                            }
+                        }
+                        else if(typeof this.for === "string"){
+                            for(let x = 0; x < document.getElementById(this.for).getAttribute('val'); x++){
+                                this.addPage();
+                            }
+                        }
+                    }
+                    else{
+                        this.changePage();
+                    }
                 }
             }
         }
@@ -111,11 +153,28 @@ class Node extends HTMLElement{
             eval(this.function)
         }
         if(this.if === null && this.var === null && this.varif === null){
-            this.changePage();
+            if(this.for !== null){
+                if(typeof eval(this.for) === "number"){
+                    for(let x = 0; x < this.for; x++){
+                        this.addPage();
+                    }
+                }
+                else if(typeof this.for === "string"){
+                    for(let x = 0; x < document.getElementById(this.for).getAttribute('val'); x++){
+                        this.addPage();
+                    }
+                }
+            }
+            else{
+                this.changePage();
+            }
         }
     }
     changePage(){
         fetch(this.link).then(data => data.text()).then(html => this.innerHTML = html)
+    }
+    addPage(){
+        fetch(this.link).then(data => data.text()).then(html => this.innerHTML += html)
     }
 }
 
