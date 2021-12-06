@@ -70,5 +70,5 @@ you can use the "for" attribute to specify how many times to render an element
 ```
 or just pass in the number
 ```html
-  <chain-link for=5 link="test.html"></chain-link>
+  <chain-node for=5 link="test.html"></chain-node>
 ```
