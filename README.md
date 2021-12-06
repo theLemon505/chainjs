@@ -66,7 +66,7 @@ if you would like to change the page url to another html file use the chain-link
 you can use the "for" attribute to specify how many times to render an element
 ```html
   <chain-var id="var_id" val=2></chain-var>
-  <chain-link for="var_id" link="test.html"></chain-link>
+  <chain-node for="var_id" link="test.html"></chain-node>
 ```
 or just pass in the number
 ```html
