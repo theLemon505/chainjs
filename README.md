@@ -6,7 +6,7 @@ to use chain js first download the chainjs file and include it in your html proj
 
   EX:
   ```html
-  <script src="chain.js"></script>'
+  <script src="chain.js"></script>
   ```
 
 you may also use the raw link
