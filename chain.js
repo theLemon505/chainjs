@@ -1,3 +1,26 @@
+window.onload = init;
+
+function init(){
+var vars = document.body.getElementsByTagName("chain-var");
+for(let i = 0; i < vars.length; i++){
+    var observer = new MutationObserver(function(){
+        var els = document.getElementsByTagName("chain-node");
+        for(let i = 0; i < els.length; i++){
+            els[i].updateRendering();
+        }
+
+        var ell = document.getElementsByTagName("chain-link");
+        for(let i = 0; i < ell.length; i++){
+            ell[i].updateRendering();
+        }
+    });     
+
+    observer.observe(vars[i], {
+        attributes: true //configure it to listen to attribute changes
+    });
+}
+}
+
 class Node extends HTMLElement{
     constructor(){
         super();
@@ -14,6 +37,12 @@ class Node extends HTMLElement{
 
     connectedCallback(){
         this.updateRendering();
+    }
+
+    refresh(){
+        var element = this.cloneNode(true);
+        document.body.appendChild(element);
+        document.body.removeChild(this);
     }
 
     get link(){
@@ -106,6 +135,7 @@ class Node extends HTMLElement{
             this.removeAttribute('if')
         }
     }
+
     updateRendering(){
         if(eval(this.and) === true){
             if(this.if !== null && this.var !== null && this.varif !== null){
