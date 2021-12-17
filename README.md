@@ -72,3 +72,5 @@ or just pass in the number
 ```html
   <chain-node for=5 link="test.html"></chain-node>
 ```
+
+WARNING: this frameowrk uses the innerHTML varibale witch is not secure and can possible cause web volnerabilities. we are working to remove this and find a better solution
