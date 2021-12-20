@@ -26,14 +26,13 @@ class Node extends HTMLElement{
         super();
         this.link = null;
         this.if = null;
-        this.function = null;
         this.var = null;
         this.varif = null; 
         this.and = false;
         this.for = null;
     }
 
-    static observedAttributes = ["link","if","function","var","varif","and","for"]
+    static observedAttributes = ["link","if","var","varif","and","for"]
 
     connectedCallback(){
         this.updateRendering();
@@ -71,19 +70,6 @@ class Node extends HTMLElement{
         }
     }
 
-    get function(){
-        return this.getAttribute('function');
-    }
-
-    set function(val){
-        if(val){
-            this.setAttribute('function', val)
-        }
-        else{
-            this.removeAttribute('function')
-        }
-    }
-
     get var(){
         return this.getAttribute('var');
     }
@@ -178,9 +164,6 @@ class Node extends HTMLElement{
                     }
                 }
             }
-        }
-        if(this.function !== null){
-            eval(this.function)
         }
         if(this.if === null && this.var === null && this.varif === null){
             if(this.for !== null){
@@ -213,13 +196,12 @@ class Link extends HTMLElement{
         super();
         this.link = null;
         this.if = null;
-        this.function = null;
         this.var = null;
         this.varif = null; 
         this.and = false;
     }
 
-    static observedAttributes = ["link","if","function","var","varif", "and"]
+    static observedAttributes = ["link","if","var","varif", "and"]
 
     connectedCallback(){
         this.updateRendering();
@@ -240,15 +222,6 @@ class Link extends HTMLElement{
 
     get function(){
         return this.getAttribute('function');
-    }
-
-    set function(val){
-        if(val){
-            this.setAttribute('function', val)
-        }
-        else{
-            this.removeAttribute('function')
-        }
     }
 
     get var(){
@@ -317,9 +290,6 @@ class Link extends HTMLElement{
                     this.changePage();
                 }
             }
-        }
-        if(this.function !== null){
-            eval(this.function)
         }
         if(this.if === null && this.var === null && this.varif === null){
             this.changePage();
@@ -360,6 +330,39 @@ class Var extends HTMLElement{
     }
 }
 
+class Snip extends HTMLElement{
+    constructor(){
+        super()
+        this.element = null
+    }
+
+    static observedAttributes = ["element"]
+
+    connectedCallback(){
+        this.updateRendering()
+    }
+
+    get element(){
+        return this.getAttribute("element");
+    }
+
+    set element(value){
+        if(value){
+            this.setAttribute("element", value)
+        }
+        else{
+            this.removeAttribute("element")
+        }
+    }
+
+    updateRendering(){
+        if(this.element !== null){
+            this.innerHTML = document.getElementById(this.element).innerHTML;
+        }
+    }
+}
+
+customElements.define("chain-snip", Snip);
 customElements.define("chain-link", Link);
 customElements.define("chain-var", Var);
 customElements.define("chain-node", Node);
