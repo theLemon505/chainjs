@@ -73,4 +73,16 @@ or just pass in the number
   <chain-node for=5 link="test.html"></chain-node>
 ```
 
+you can use the chain-snip element to copy the data from another element and render it there. just give it the id of the element you want to re-render in the element attribute
+```html
+  <div id="d">
+    <p>hello</p>
+  </div>
+  <chain-snip element="d"></chain-snip>
+```
+```bash
+hello
+hello
+```
+
 WARNING: this frameowrk uses the innerHTML varibale witch is not secure and can possible cause web volnerabilities. we are working to remove this and find a better solution
